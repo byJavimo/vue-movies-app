@@ -1,15 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <NavBar :pages="pages"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { NavBar } from './components/NavBar.vue';
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: [
+    NavBar
+  ],
+  data: () => {
+    return {
+      pages: [
+        {
+          name: 'Home',
+          url: '/home'
+        },
+        {
+          name: 'MoviesList',
+          url: '/peliculas'
+        }
+      ]
+    }
   }
 }
 </script>
