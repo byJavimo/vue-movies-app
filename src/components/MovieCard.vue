@@ -1,21 +1,18 @@
 <template>
     <div class="movie-card">
-        <img src="{{data.image}}"></img>
+        <img :src="`${IMG_BASE_URL}/${imageSize}${data.poster_path}`"/>
+        <span>{{data.vote_average}}</span>
         <h2> {{data.title}} </h2>
     </div>
 </template>
 
 <script>
-import {IMG_BASE_URL} from '../services/movies-api.js';
+import {IMG_BASE_URL} from '../services/movies.api.js';
 
 export default {
   name: 'MovieCard',
   props: ['data'],
-  data: () => {
-      return {
-          IMG_BASE_URL: IMG_BASE_URL
-      }
-  }
+  data: () => ({ IMG_BASE_URL: IMG_BASE_URL, imageSize: 'w200' })
 }
 </script>
 

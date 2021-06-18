@@ -1,6 +1,6 @@
 <template>
     <div class="spinner">
-        <slot></slot>
+        Cargando...
     </div>
 </template>
 

@@ -2,12 +2,9 @@
   <div class="error-message" v-if="error">
     {{error}}
   </div>
-  <Spinner v-if="loading">
-    Cargando...
-  </Spinner>
   <div class="movie-detail" v-if="!loading && !error">
     <div class="movie-poster">
-        <img :src="${IMG_BASE_URL}movie">
+        <img :src="`${IMG_BASE_URL}movie`">
     </div>
     <h1>{{movie.title}}</h1>
     <h3>{{movie.tagline}}</h3>
@@ -16,11 +13,11 @@
 </template>
 
 <script>
-import { getMovieDetail, IMG_BASE_URL } from '../services/movies.api.js';
-import { Spinner } from '../components/Spinner.vue';
+import { getMovieDetail, getSimiliarMovies, IMG_BASE_URL } from '../services/movies.api.js';
+// import { Spinner } from '../components/Spinner.vue';
 export default {
   name: 'MovieDetail',
-  data() => ({IMG_BASE_URL: IMG_BASE_URL, movie: null, loading: false, error: null, similarMovies: null})
+  data: () => ({IMG_BASE_URL: IMG_BASE_URL, movie: null, loading: false, error: null, similarMovies: null}),
   async created() {
       this.loading = true;
       try {

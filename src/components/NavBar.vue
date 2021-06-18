@@ -1,6 +1,6 @@
 <template>
     <ul class="navbar">
-        <router-link v-for="(page, index) in pages" :key="index" to="page.url"> {{page.name}}</router-link>
+        <router-link v-for="(page, index) in pages" :key="index" :to="page.url"> {{page.name}}</router-link>
     </ul>
 </template>
 

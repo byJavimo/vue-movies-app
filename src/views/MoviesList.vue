@@ -1,42 +1,38 @@
 <template>
   <div class="movies-list">
-    <div class="error-message" v-if="error">
-      {{error}}
+    <div v-if="error">
+        {{error.message}}
     </div>
-    <Spinner v-if="loading">
-        Cargando...
-    <Spinner/>
+    <Spinner v-if="loading" />
     <div v-if="!loading && !error">
-        Lista de películas
+        <ul>
+            <MovieCard  v-for="movie in movies" :key="movie.id" :data="movie" />
+        </ul>
     </div>
   </div>
 </template>
 
 <script>
 // Components
-import { Spinner } from '../components/Spinner.vue';
+import Spinner  from '../components/Spinner.vue';
+import MovieCard from '../components/MovieCard.vue';
 // Services
-import { getMovies } from '../services/movies.api.js';
+import {getMovies} from '../services/movies.api.js';
+
 export default {
   name: 'MoviesList',
-  components: [
-      Spinner
-  ],
-  data: () => {
-      return {
-          loading: faorldlse,
-          movies: [],
-          error: null
-      }
+  components: {
+    Spinner,
+    MovieCard
   },
-  created: async function() {
+  data: () => ({movies: [], loading: false, error: null}),
+  async beforeCreate() {
       this.loading = true;
       try {
-        const response = await getMovies()
-        console.log(response);
-        this.movies = response.data.results
-      } =catch (error) {
-        console.log(error);
+        const response = await getMovies();
+        console.log(response.data.results);
+        this.movies = response.data.results;
+      } catch (error) {
         this.error = error.message;
       } finally {
         this.loading = false;
@@ -58,8 +54,5 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>

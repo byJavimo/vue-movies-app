@@ -1,31 +1,36 @@
 <template>
-  <NavBar :pages="pages"/>
+  <Navbar :pages="pages" />
+  <router-view/>
 </template>
-
 <script>
-import { NavBar } from './components/NavBar.vue';
+// @ is an alias to /src
+import Navbar from './components/NavBar.vue'
+
 export default {
-  name: 'App',
-  components: [
-    NavBar
-  ],
+  name: 'Home',
+  components: {
+    Navbar
+  },
   data: () => {
     return {
       pages: [
         {
+          id: 1,
           name: 'Home',
           url: '/home'
         },
+        
         {
-          name: 'MoviesList',
+          id: 2,
+          name: 'Películas',
           url: '/peliculas'
         }
       ]
     }
   }
+
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,6 +38,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
